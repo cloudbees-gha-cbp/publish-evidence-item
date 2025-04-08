@@ -55,4 +55,9 @@ In your YAML file, add:
  
 This code is made available under the
 link:https://opensource.org/license/mit/[MIT license].
+
+== References
+ 
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/actions[using actions in CloudBees workflows].
+* Learn about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/[the CloudBees platform].
  
