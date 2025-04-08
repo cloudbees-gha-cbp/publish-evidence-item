@@ -1,0 +1,26 @@
+name: 'Publish Evidence Item'
+description: "publishing step level evidence to CBP"
+
+inputs:
+  cloudbees-url:
+    description: 'The CloudBees platform URL.'
+    required: false
+    default: "https://api.cloudbees.io"
+  cloudbees-pat:
+    description: 'The CloudBees platform personal access token.'
+    required: true
+  content:
+    description: 'The content to be published as evidence.'
+    required: true
+  format:
+    description: 'The format of the evidence content.'
+    required: false
+
+runs:
+  using: "docker"
+  image: "docker://ghcr.io/srimanpadmanabancb/gha-action/gha-publish-evidence-action:latest"
+  env:
+    CLOUDBEES_API_URL: ${{ inputs.cloudbees-url }}
+    CLOUDBEES_PAT_TOKEN: ${{ inputs.cloudbees-pat }}
+    CONTENT: ${{ inputs.content }}
+    FORMAT: ${{ inputs.format }}
