@@ -44,7 +44,7 @@ In your YAML file, add:
  
 [source,yaml]
 ----
-    - name: Run Workflow
+    - name: Publish evidence
       uses: cloudbees-gha-cbp/publish-evidence-item@v1
       with:
         cloudbees-pat: ${{ secrets.MY_PAT }}
