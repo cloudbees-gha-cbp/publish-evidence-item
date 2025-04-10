@@ -23,4 +23,3 @@ runs:
     CLOUDBEES_API_URL: ${{ inputs.cloudbees-url }}
     CLOUDBEES_PAT_TOKEN: ${{ inputs.cloudbees-pat }}
     CONTENT: ${{ inputs.content }}
-    FORMAT: ${{ inputs.format }}
