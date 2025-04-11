@@ -1,7 +1,7 @@
 = Publish an evidence item to the CloudBees platform
  
 Use this GitHub Action (GHA) to capture job-level evidence data in Markdown format in a GHA workflow run and publish it to the CloudBees platform.
-The evidence is displayed on the btn:[Evidence] tab of *Run details* for your run.
+The evidence is displayed on the *Evidence* tab of *Run details* for your run.
 For more information, refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/workflows/evidence[the evidence documentation].
 
 == Inputs
