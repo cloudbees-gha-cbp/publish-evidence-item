@@ -21,5 +21,5 @@ runs:
   image: "docker://public.ecr.aws/l7o7z1g8/actions/gha-publish-evidence-item:main-19d6ef14af635a51bcadff213f428b97a1cfb6e7" 
   env:
     CLOUDBEES_API_URL: ${{ inputs.cloudbees-url }}
-    CLOUDBEES_PAT_TOKEN: ${{ inputs.cloudbees-pat }}
+    CLOUDBEES_API_TOKEN: ${{ inputs.cloudbees-pat }}
     CONTENT: ${{ inputs.content }}
