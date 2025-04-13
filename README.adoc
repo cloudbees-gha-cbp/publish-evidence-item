@@ -1,56 +1,99 @@
-= Publish Evidence Item
+= Publish an evidence item to the CloudBees platform
  
-Use this action to publish job level evidence 
+Use this GitHub Action (GHA) to capture job-level evidence data in Markdown format in a GHA workflow run and publish it to the CloudBees platform.
+The evidence is displayed on the *Evidence* tab of *Run details* for your run.
+For more information, refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/workflows/evidence[the evidence documentation].
 
 == Inputs
- 
-[cols="2a,1a,1a,3a",options="header"]
+
+[cols="22%a,15%a,15%a,48%a",options="header"]
 .Input details
 |===
- 
 | Input name
 | Data type
-| Required
+| Required?
 | Description
- 
-| `cloudbees-url`
-| String
-| No
-| The CloudBees platform URL. Default value is `"https://api.cloudbees.io"`.
- 
+
 | `cloudbees-pat`
 | String
 | Yes
-| The CloudBees platform personal access token.
- 
+| The link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/workflows/personal-access-token[CloudBees platform personal access token].
+
 | `content`
 | String
 | Yes
-| Content to be published as evidence.
- 
-| `format`
+| The content to be published as evidence.
+
+| `cloudbees-url`
 | String
-|No
+| No
+| The CloudBees platform URL.
+The default value is `"https://api.cloudbees.io"`.
 
-| The markup language format.
-Default is link:https://www.markdownguide.org/basic-syntax/[MARKDOWN].
-
- 
 |===
 
-== Usage example
+IMPORTANT: The required markup language format for the evidence content is link:https://www.markdownguide.org/basic-syntax/[Markdown].
+
+== Usage examples
  
-In your YAML file, add:
- 
+=== Basic example
+
+The following is a basic example of using the action:
+
 [source,yaml]
 ----
-    - name: Publish evidence
-      uses: cloudbees-gha-cbp/publish-evidence-item@v1
-      with:
-        cloudbees-pat: ${{ secrets.MY_PAT }}
-        content: "Test evidence content"
- 
+steps:
+      - name: Publish evidence
+        uses: cloudbees-gha-cbp/publish-evidence-item@v1
+        with:
+          cloudbees-pat: ${{ secrets.MY_PAT }}
+          content: |-
+            # Sample Markdown evidence output
+            - Application endpoint: https://app.example.com/qa
+            - Artifacts
+              - [backend.jar](https://example.com/repo/app/v1.0/backend.jar)
+
 ----
+
+=== Full workflow and run example
+
+The following GHA workflow example uses this action to publish evidence to the CloudBees platform.
+
+.Example GHA workflow YAML file
+[.collapsible]
+--
+
+[source, yaml,role="default-expanded"]
+----
+name: Output evidence
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-go-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up environment variable for PAT
+        run: echo "MY_PAT=${{ secrets.MY_PAT }}"
+
+      - name: My evidence
+        uses: cloudbees-gha-cbp/publish-evidence-item@v1
+        id: go-action
+        with :
+          cloudbees-pat: ${{ secrets.QA_PAT }}
+          # content: "This is viewable on the Evidence tab of the run details."
+----
+--
+
+After the run has completed, the evidence output is collected and displayed in the *Evidence* tab of *Run details*.
+
 == License
  
 This code is made available under the
@@ -58,6 +101,6 @@ link:https://opensource.org/license/mit/[MIT license].
 
 == References
  
-* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/actions[using actions in CloudBees workflows].
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-actions/intro[Using GitHub Actions with the CloudBees platform].
 * Learn about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/[the CloudBees platform].
  
