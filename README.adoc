@@ -49,7 +49,7 @@ The following is a basic example of using the action:
 ----
 steps:
       - name: Publish evidence
-        uses: cloudbees-gha-cbp/publish-evidence-item@v1
+        uses: cloudbees-io-gha/publish-evidence-item@v1
         with:
           cloudbees-pat: ${{ secrets.MY_PAT }}
           content: |-
@@ -89,7 +89,7 @@ jobs:
         run: echo "MY_PAT=${{ secrets.MY_PAT }}"
 
       - name: My evidence
-        uses: cloudbees-gha-cbp/publish-evidence-item@v1
+        uses: cloudbees-io-gha/publish-evidence-item@v1
         id: go-action
         with :
           cloudbees-pat: ${{ secrets.QA_PAT }}
