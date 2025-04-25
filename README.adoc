@@ -51,7 +51,7 @@ steps:
       - name: Publish evidence
         uses: cloudbees-io-gha/publish-evidence-item@v1
         with:
-          cloudbees-pat: ${{ secrets.MY_PAT }}
+          cloudbees-pat: ${{ secrets.CBP_PAT }}
           content: |-
             # Sample Markdown evidence output
             - Application endpoint: https://app.example.com/qa
@@ -85,14 +85,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up environment variable for PAT
-        run: echo "MY_PAT=${{ secrets.MY_PAT }}"
-
       - name: My evidence
         uses: cloudbees-io-gha/publish-evidence-item@v1
         id: go-action
         with :
-          cloudbees-pat: ${{ secrets.QA_PAT }}
+          cloudbees-pat: ${{ secrets.CBP_PAT }}
           # content: "This is viewable on the Evidence tab of the run details."
 ----
 --
