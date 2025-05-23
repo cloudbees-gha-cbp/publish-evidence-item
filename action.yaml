@@ -10,9 +10,6 @@ inputs:
     description: 'The CloudBees platform URL.'
     required: false
     default: "https://api.cloudbees.io"
-  cloudbees-pat:
-    description: 'The CloudBees platform personal access token.'
-    required: true
   content:
     description: 'The content to be published as evidence.'
     required: true
@@ -22,8 +19,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: "docker://public.ecr.aws/l7o7z1g8/actions/gha-publish-evidence-item:main-f525cf9e31652d9a870bfc6d705570a0e5df53ea" 
+  image: "docker://public.ecr.aws/l7o7z1g8/actions/gha-publish-evidence-item:main-67ecddf177bea5bc3d61e1418bf3b6e4ea9e01e9" 
   env:
     CLOUDBEES_API_URL: ${{ inputs.cloudbees-url }}
-    CLOUDBEES_API_TOKEN: ${{ inputs.cloudbees-pat }}
     CONTENT: ${{ inputs.content }}
